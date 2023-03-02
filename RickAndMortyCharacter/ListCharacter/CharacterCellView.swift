@@ -15,13 +15,14 @@ class CharacterCellView: UITableViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        
         return imageView
     }()
     
     let characterName: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 1
-        label.font = .systemFont(ofSize: 32, weight: .bold, width: .condensed)
+        label.numberOfLines = 2
+        label.font = .systemFont(ofSize: 20, weight: .bold, width: .condensed)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -36,21 +37,26 @@ class CharacterCellView: UITableViewCell {
     }
     
     func setupViews(){
-       addSubview(characterImageView)
+        addSubview(characterImageView)
         addSubview(characterName)
         
+        
+        // Posicionar los elementos en dos columnas
         NSLayoutConstraint.activate([
             characterImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
             characterImageView.topAnchor.constraint(equalTo: topAnchor, constant: 12),
             characterImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),
-            characterImageView.widthAnchor.constraint(equalToConstant: 200),
-
-            characterName.leadingAnchor.constraint(equalTo: characterImageView.trailingAnchor,constant: 50),
-            characterName.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -12),
-            characterName.topAnchor.constraint(equalTo: characterImageView.topAnchor, constant: 100)
-        
+            characterImageView.widthAnchor.constraint(equalToConstant: 150),
+            
+            characterName.leadingAnchor.constraint(equalTo: characterImageView.trailingAnchor, constant: 10),
+            characterName.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
+            characterName.topAnchor.constraint(equalTo: characterImageView.topAnchor, constant: 10),
+            
         ])
     }
+    
+    
+    
     
     func configure(model: CharacterViewModel) {
         characterImageView.kf.setImage(with: model.imageURL)

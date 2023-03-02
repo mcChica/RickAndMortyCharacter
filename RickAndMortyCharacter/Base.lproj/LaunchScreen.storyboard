@@ -3,6 +3,7 @@
     <device id="retina6_72" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -15,16 +16,48 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchImage" translatesAutoresizingMaskIntoConstraints="NO" id="gxI-i3-vHT">
+                                <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Rick &amp; Morty Data" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mPg-BK-ZK6">
+                                <rect key="frame" x="0.0" y="638" width="430" height="208"/>
+                                <color key="tintColor" name="AccentColor"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="53"/>
+                                <color key="textColor" red="0.021968221289999999" green="0.67533868549999998" blue="0.98845762010000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="highlightedColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="shadowColor" red="0.69506056240000003" green="1" blue="0.39892064290000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <size key="shadowOffset" width="-4" height="-4"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ih8-LU-02e">
+                                <rect key="frame" x="0.0" y="314" width="430" height="328"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="mPg-BK-ZK6" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="583" id="2ky-RO-BFQ"/>
+                            <constraint firstItem="gxI-i3-vHT" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" constant="-59" id="IWG-f9-iXg"/>
+                            <constraint firstItem="mPg-BK-ZK6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="SOU-lr-aJl"/>
+                            <constraint firstItem="gxI-i3-vHT" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="VFG-8m-e1L"/>
+                            <constraint firstItem="mPg-BK-ZK6" firstAttribute="leading" secondItem="gxI-i3-vHT" secondAttribute="leading" id="VaU-ud-NI7"/>
+                            <constraint firstItem="mPg-BK-ZK6" firstAttribute="trailing" secondItem="gxI-i3-vHT" secondAttribute="trailing" id="dB9-pe-Kyi"/>
+                            <constraint firstItem="mPg-BK-ZK6" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="fTE-r7-3hM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="mPg-BK-ZK6" secondAttribute="bottom" constant="52" id="fl9-Rs-9wv"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="51.627906976744185" y="374.67811158798287"/>
         </scene>
     </scenes>
     <resources>
+        <image name="launchImage" width="454" height="577.5"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

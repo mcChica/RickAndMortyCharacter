@@ -9,6 +9,5 @@ import Foundation
 
 struct Endpoint {
     static let getCharacter = "https://rickandmortyapi.com/api/character"
-    static let getEpisode = "https://rickandmortyapi.com/api/episode"
-    static let getLocation = "https://rickandmortyapi.com/api/location"
+    static let getFiltersStatus = "https://rickandmortyapi.com/api/character/?status="
 }

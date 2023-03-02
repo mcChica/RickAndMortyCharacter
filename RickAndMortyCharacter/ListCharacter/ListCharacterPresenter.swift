@@ -12,6 +12,8 @@ protocol ListOfCharacterPresentable: AnyObject {
     var characterViewModel: [CharacterViewModel] { get }
     func onViewAppear()
     func onTapCell(atIndex: Int)
+    func loadMoreCharactersIfNeeded(forRowAt indexPath: IndexPath)
+    func filterCharacters(status: String)
 }
 
 protocol ListOfDetailUI: AnyObject{
@@ -19,14 +21,13 @@ protocol ListOfDetailUI: AnyObject{
 }
 
 
-class ListCharacterPresenter: ListOfCharacterPresentable{
-   
-    
+class ListCharacterPresenter: ListOfCharacterPresentable {
+
+    var nextPage: String? = nil
     weak var ui: ListOfDetailUI?
-    
-    
-     let listCharacterInteractor: ListCharacterInteractor
-    private let mapperCharacter: MapperCharacterViewModel
+   
+    let listCharacterInteractor: ListCharacterInteractor
+    let mapperCharacter: MapperCharacterViewModel
     private let router: ListCharacterRouting
     
     var characterViewModel: [CharacterViewModel] = []
@@ -40,10 +41,18 @@ class ListCharacterPresenter: ListOfCharacterPresentable{
     
     
     func onViewAppear() {
-        Task{
-            models = await listCharacterInteractor.getListofCharacter().results
-            characterViewModel = models.map(mapperCharacter.map(entity:))
-            ui?.update(detailViewModel: characterViewModel)
+        Task {
+            do {
+                let response = try await listCharacterInteractor.getListofCharacter()
+                models = response.results
+                characterViewModel = models.map(mapperCharacter.map(entity:))
+                nextPage = response.info.next
+                await MainActor.run {
+                    ui?.update(detailViewModel: characterViewModel)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
     
@@ -51,6 +60,42 @@ class ListCharacterPresenter: ListOfCharacterPresentable{
         let characterId = models[atIndex].id
         router.showDetailCharacter(withCharacterId: characterId.description)
     }
+    func loadMoreCharactersIfNeeded(forRowAt indexPath: IndexPath) {
+        let lastRowIndex = models.count - 1
+        if indexPath.row == lastRowIndex, let next = nextPage {
+            Task {
+                do {
+                    let response = try await listCharacterInteractor.getListofCharacter(url: next)
+                    models.append(contentsOf: response.results)
+                    let newViewModel = response.results.map(mapperCharacter.map(entity:))
+                    characterViewModel.append(contentsOf: newViewModel)
+                    nextPage = response.info.next
+                    await MainActor.run {
+                        ui?.update(detailViewModel: characterViewModel)
+                    }
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    func filterCharacters(status: String) {
+        Task {
+            do {
+                let response = try await listCharacterInteractor.getListofCharacterFilter(status: status)
+                models = response.results
+                characterViewModel = models.map(mapperCharacter.map(entity:))
+                nextPage = response.info.next
+                await MainActor.run {
+                    ui?.update(detailViewModel: characterViewModel)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     
 }
 

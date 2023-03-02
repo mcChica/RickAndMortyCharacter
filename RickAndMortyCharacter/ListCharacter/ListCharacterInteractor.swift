@@ -8,33 +8,39 @@
 import Foundation
 
 protocol ListCharacterInteractorImp: AnyObject {
-    func getListofCharacter() async -> CharacterResponseEntity
+    func getListofCharacter(url: String ) async throws -> CharacterResponseEntity
+    func getListofCharacterFilter(status: String) async throws -> CharacterResponseEntity
 }
 
 class ListCharacterInteractor: ListCharacterInteractorImp {
     let apiClient = NetworkManager()
     
-    /*
-    func fetchCharacters()  {
-        apiClient.request(Endpoint.getCharacter) { (result: Result<CharacterResponseEntity, Error>) in
-            switch result {
-            case .success(let response):
-                print(response)
-               
-                
-              
-              //  self.presenter.presentCharacters(response.results)
-            case .failure(let error):
-                // Manejamos el error
-                print(error.localizedDescription)
+    
+    func getListofCharacter(url: String = Endpoint.getCharacter) async throws -> CharacterResponseEntity {
+        try await withUnsafeThrowingContinuation { continuation in
+            apiClient.request(url) { (result: Result<CharacterResponseEntity, Error>) in
+                switch result {
+                case .success(let response):
+                    continuation.resume(returning: response)
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
             }
         }
-    }*/
-    
-    func getListofCharacter() async -> CharacterResponseEntity {
-        
-        let url = URL(string: "https://rickandmortyapi.com/api/character" )!
-        let (data , _) = try! await URLSession.shared.data(from: url)
-        return try! JSONDecoder().decode(CharacterResponseEntity.self , from: data)
     }
+    
+    
+    func getListofCharacterFilter(status: String) async throws -> CharacterResponseEntity {
+        try await withUnsafeThrowingContinuation { continuation in
+            apiClient.requestFiltersStatus(status) { result in
+                switch result {
+                case .success(let response):
+                    continuation.resume(returning: response)
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
 }

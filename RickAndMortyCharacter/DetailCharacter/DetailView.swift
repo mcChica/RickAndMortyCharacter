@@ -66,6 +66,7 @@ class DetailView: UIViewController {
         super.viewDidLoad()
         setupView()
         presenter.onViewAppear()
+        view.backgroundColor = .white
     }
     
     func setupView() {
@@ -116,10 +117,10 @@ class DetailView: UIViewController {
 extension DetailView: DetailPresenterUI {
     func updateUI(detailViewModel: DetailCharacterViewModel) {
         characterImageView.kf.setImage(with: detailViewModel.image)
-        detailName.text = detailViewModel.name
-        status.text = detailViewModel.status
-        species.text = detailViewModel.status
-        gender.text = detailViewModel.gender
+        detailName.text = "Name: " + detailViewModel.name
+        status.text = "Status: " + detailViewModel.status
+        species.text = "Species: " + detailViewModel.species
+        gender.text = "Gender: " + detailViewModel.gender
     }
     
     

@@ -14,8 +14,9 @@ protocol DetailRouting: AnyObject {
 
 class DetailRouter: DetailRouting {
     func showDetail(fromViewViewController: UIViewController, withDetailId id: String) {
-        let interactor = DetailInteractor()
-        let presenter = DetailPresenter(characterId: id, interactor: interactor as! DetailInteractable , mapper: MapperDetailCharacterViewModel())
+        let network = NetworkManager()
+        let interactor = DetailInteractor(networkManager: network)
+        let presenter = DetailPresenter(characterId: id, interactor: interactor , mapper: MapperDetailCharacterViewModel())
         
         let view = DetailView(presenter: presenter)
         presenter.ui = view

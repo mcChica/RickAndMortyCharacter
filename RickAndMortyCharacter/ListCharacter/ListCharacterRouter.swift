@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import RickMortySwiftApi
 
 protocol ListCharacterRouting: AnyObject{
     var detailRouter: DetailRouting? { get }
