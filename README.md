@@ -35,3 +35,11 @@ the application displays their details in a separate view.
 
 The application uses the VIPER architecture, but the router component has been omitted since the application only has three views.
 The app also includes unit tests for the NetworkManager class.
+
+
+![Captura de pantalla 1](./screenshots/Screenshot 2023-03-06 at 10.48.13.png)
+![Captura de pantalla 1](./screenshots/Screenshot 2023-03-06 at 10.48.26.png)
+![Captura de pantalla 1](./screenshots/Screenshot 2023-03-06 at 10.48.37.png)
+![Captura de pantalla 1](./screenshots/Screenshot 2023-03-06 at 10.48.47.png)
+![Captura de pantalla 1](./screenshots/Screenshot 2023-03-06 at 10.48.59.png)
+
