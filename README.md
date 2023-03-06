@@ -37,9 +37,9 @@ The application uses the VIPER architecture, but the router component has been o
 The app also includes unit tests for the NetworkManager class.
 
 
-![Captura de pantalla 1](screenshots/0.png)
-![Captura de pantalla 1](screenshots/Screenshot 2023-03-06 at 10.48.26.png)
-![Captura de pantalla 1](screenshots/Screenshot 2023-03-06 at 10.48.37.png)
-![Captura de pantalla 1](screenshots/Screenshot 2023-03-06 at 10.48.47.png)
-![Captura de pantalla 1](screenshots/Screenshot 2023-03-06 at 10.48.59.png)
+![Captura de pantalla 0](screenshots/0.png)
+![Captura de pantalla 1](screenshots/1.png)
+![Captura de pantalla 2](screenshots/2.png)
+![Captura de pantalla 3](screenshots/3.png)
+![Captura de pantalla 4](screenshots/4.png)
 
